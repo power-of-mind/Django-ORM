@@ -1,0 +1,48 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}
+Каталог телефонов
+{% endblock %}
+
+{% block content %}
+
+<h1>Каталог телефонов 📱</h1>
+
+<div class="sort">
+    <strong>Сортировка:</strong>
+    <a href="?sort=name">По названию</a>
+    <a href="?sort=min_price">Сначала дешёвые</a>
+</div>
+
+{% for phone in phones %}
+    <div class="phone">
+
+        <img src="{{ phone.image }}" alt="{{ phone.name }}">
+
+        <div>
+            <h3>{{ phone.name }}</h3>
+
+            <p class="price">
+                {{ phone.price }} ₽
+            </p>
+
+            <p>
+                Дата выхода: {{ phone.release_date }}
+            </p>
+
+            <p>
+                LTE:
+                {% if phone.lte_exists %}
+                    ✅ есть
+                {% else %}
+                    ❌ нет
+                {% endif %}
+            </p>
+        </div>
+
+    </div>
+{% empty %}
+    <p>Телефоны не найдены</p>
+{% endfor %}
+
+{% endblock %}
