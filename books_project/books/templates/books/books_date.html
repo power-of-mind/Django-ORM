@@ -1,0 +1,27 @@
+{% extends "books/base.html" %}
+
+{% block content %}
+
+{% for book in books %}
+    <h3>{{ book.name }}</h3>
+    <p>Автор: {{ book.author }}</p>
+    <p>Дата публикации: {{ book.pub_date }}</p>
+{% endfor %}
+
+<br>
+
+<div>
+    {% if prev_date %}
+    <a href="/books/{{ prev_date|date:'Y-m-d' }}">
+        ← {{ prev_date }}
+    </a>
+{% endif %}
+
+{% if next_date %}
+    <a href="/books/{{ next_date|date:'Y-m-d' }}">
+        {{ next_date }} →
+    </a>
+{% endif %}
+</div>
+
+{% endblock %}
